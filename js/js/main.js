@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GUI } from 'dat.gui';
-import * as RecordRTC from 'recordrtc';
+import { RecordRTCPromisesHandler } from 'https://unpkg.com/recordrtc@5.6.2/RecordRTC.js';
 import { Planet } from './planet.js';
 import { StarField } from './starField.js';
 
@@ -466,7 +466,7 @@ class SolarSystem {
 
     setupRecording() {
         const stream = this.renderer.domElement.captureStream(60);
-        this.recorder = new RecordRTC.RecordRTCPromisesHandler(stream, {
+        this.recorder = new RecordRTCPromisesHandler(stream, {
             type: 'video',
             mimeType: 'video/webm',
             videoBitsPerSecond: 8000000
