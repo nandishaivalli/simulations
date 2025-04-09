@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GUI } from 'dat.gui';
-import RecordRTC from 'recordrtc';
+import * as RecordRTC from 'recordrtc';
 import { Planet } from './planet.js';
 import { StarField } from './starField.js';
 
@@ -466,7 +466,7 @@ class SolarSystem {
 
     setupRecording() {
         const stream = this.renderer.domElement.captureStream(60);
-        this.recorder = new RecordRTC(stream, {
+        this.recorder = new RecordRTC.RecordRTCPromisesHandler(stream, {
             type: 'video',
             mimeType: 'video/webm',
             videoBitsPerSecond: 8000000
@@ -477,34 +477,33 @@ class SolarSystem {
         recordFolder.add(this, 'toggleRecording').name('Record');
     }
 
-    toggleRecording() {
+    async toggleRecording() {
         if (!this.isRecording) {
-            this.startRecording();
+            await this.startRecording();
         } else {
-            this.stopRecording();
+            await this.stopRecording();
         }
     }
 
-    startRecording() {
-        this.recorder.startRecording();
+    async startRecording() {
+        await this.recorder.startRecording();
         this.isRecording = true;
         this.recordingStatus.style.display = 'block';
         console.log('Recording started');
     }
 
-    stopRecording() {
-        this.recorder.stopRecording(() => {
-            const blob = this.recorder.getBlob();
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'solar-system-recording.webm';
-            a.click();
-            URL.revokeObjectURL(url);
-            this.isRecording = false;
-            this.recordingStatus.style.display = 'none';
-            console.log('Recording stopped and saved');
-        });
+    async stopRecording() {
+        await this.recorder.stopRecording();
+        const blob = await this.recorder.getBlob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'solar-system-recording.webm';
+        a.click();
+        URL.revokeObjectURL(url);
+        this.isRecording = false;
+        this.recordingStatus.style.display = 'none';
+        console.log('Recording stopped and saved');
     }
 
     animate() {
