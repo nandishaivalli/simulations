@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Simulations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00b4d8, #90e0ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #a8b2d1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .simulations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .simulation-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .simulation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .simulation-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #90e0ef;
+        }
+
+        .simulation-card p {
+            color: #a8b2d1;
+            margin-bottom: 1.5rem;
+        }
+
+        .simulation-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00b4d8;
+        }
+
+        .coming-soon {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .coming-soon::after {
+            content: "Coming Soon";
+            display: block;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .simulations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Physics Simulations</h1>
+        <p>Explore various physics simulations and visualizations. Click on any simulation to start exploring!</p>
+    </div>
+
+    <div class="simulations-grid">
+        <a href="solar-system.html" class="simulation-card">
+            <div class="icon">🌞</div>
+            <h2>Solar System</h2>
+            <p>Explore our solar system in 3D. View planets, moons, and their orbits around the Sun.</p>
+        </a>
+
+        <a href="#" class="simulation-card coming-soon">
+            <div class="icon">⚛️</div>
+            <h2>Quantum Mechanics</h2>
+            <p>Visualize quantum phenomena like wave-particle duality and quantum tunneling.</p>
+        </a>
+
+        <a href="#" class="simulation-card coming-soon">
+            <div class="icon">🌊</div>
+            <h2>Fluid Dynamics</h2>
+            <p>Simulate fluid flow, waves, and turbulence in real-time.</p>
+        </a>
+
+        <a href="#" class="simulation-card coming-soon">
+            <div class="icon">⚡</div>
+            <h2>Electromagnetism</h2>
+            <p>Explore electric and magnetic fields, and their interactions.</p>
+        </a>
+
+        <a href="#" class="simulation-card coming-soon">
+            <div class="icon">🌌</div>
+            <h2>Relativity</h2>
+            <p>Visualize effects of special and general relativity.</p>
+        </a>
+
+        <a href="#" class="simulation-card coming-soon">
+            <div class="icon">🔬</div>
+            <h2>Particle Physics</h2>
+            <p>Explore the world of subatomic particles and their interactions.</p>
+        </a>
+    </div>
+</body>
+</html>
