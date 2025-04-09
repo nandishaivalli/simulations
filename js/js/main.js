@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GUI } from 'dat.gui';
-import { RecordRTCPromisesHandler } from 'https://cdn.jsdelivr.net/npm/recordrtc@5.6.2/RecordRTC.min.js';
 import { Planet } from './planet.js';
 import { StarField } from './starField.js';
 
@@ -466,7 +465,7 @@ class SolarSystem {
 
     setupRecording() {
         const stream = this.renderer.domElement.captureStream(60);
-        this.recorder = new RecordRTCPromisesHandler(stream, {
+        this.recorder = new RecordRTC(stream, {
             type: 'video',
             mimeType: 'video/webm',
             videoBitsPerSecond: 8000000
@@ -477,33 +476,34 @@ class SolarSystem {
         recordFolder.add(this, 'toggleRecording').name('Record');
     }
 
-    async toggleRecording() {
+    toggleRecording() {
         if (!this.isRecording) {
-            await this.startRecording();
+            this.startRecording();
         } else {
-            await this.stopRecording();
+            this.stopRecording();
         }
     }
 
-    async startRecording() {
-        await this.recorder.startRecording();
+    startRecording() {
+        this.recorder.startRecording();
         this.isRecording = true;
         this.recordingStatus.style.display = 'block';
         console.log('Recording started');
     }
 
-    async stopRecording() {
-        await this.recorder.stopRecording();
-        const blob = await this.recorder.getBlob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'solar-system-recording.webm';
-        a.click();
-        URL.revokeObjectURL(url);
-        this.isRecording = false;
-        this.recordingStatus.style.display = 'none';
-        console.log('Recording stopped and saved');
+    stopRecording() {
+        this.recorder.stopRecording(() => {
+            const blob = this.recorder.getBlob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'solar-system-recording.webm';
+            a.click();
+            URL.revokeObjectURL(url);
+            this.isRecording = false;
+            this.recordingStatus.style.display = 'none';
+            console.log('Recording stopped and saved');
+        });
     }
 
     animate() {
