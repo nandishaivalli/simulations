@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GUI } from 'dat.gui';
-import { RecordRTCPromisesHandler } from 'https://unpkg.com/recordrtc@5.6.2/RecordRTC.js';
+import { RecordRTCPromisesHandler } from 'https://cdn.jsdelivr.net/npm/recordrtc@5.6.2/RecordRTC.min.js';
 import { Planet } from './planet.js';
 import { StarField } from './starField.js';
 
