@@ -1,70 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System Simulation</title>
-    <script src="https://cdn.jsdelivr.net/npm/recordrtc@5.6.2/RecordRTC.min.js"></script>
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
-                "dat.gui": "https://unpkg.com/dat.gui@0.7.9/build/dat.gui.module.js",
-                "recordrtc": "https://unpkg.com/recordrtc@5.6.2/RecordRTC.js?module"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar System Simulation</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three":        "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/",
+      "dat.gui":      "https://unpkg.com/dat.gui@0.7.9/build/dat.gui.module.js"
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { margin: 0; overflow: hidden; background: #000; }
+    canvas { display: block; }
+    #backButton {
+      position: absolute; top: 10px; left: 10px;
+      padding: 10px 20px; background: rgba(255,255,255,0.2);
+      border: none; border-radius: 5px; color: white;
+      cursor: pointer; font-family: Arial, sans-serif;
+      transition: background 0.3s;
+    }
+    #backButton:hover { background: rgba(255,255,255,0.3); }
+    #recordButton,
+    #downloadLink {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin-left: 10px;
+    font-family: Arial, sans-serif;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    }
 
-            }
-        }
-    </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: #000;
-        }
-
-        canvas {
-            display: block;
-        }
-
-        #recordingStatus {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: red;
-            font-size: 20px;
-            display: none;
-            font-family: Arial, sans-serif;
-        }
-
-        #backButton {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-            transition: background 0.3s ease;
-        }
-
-        #backButton:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <button id="backButton" onclick="window.location.href='index.html'">← Back to Simulations</button>
-    <div id="recordingStatus">● Recording</div>
-    <script type="module" src="./js/main.js"></script>
+  <button id="backButton" onclick="window.location.href='index.html'">← Back to Simulations</button>
+  <script type="module" src="./js/main.js"></script>
 </body>
-</html> 
+</html>
