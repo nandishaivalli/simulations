@@ -1,51 +1,67 @@
-// scripts/utils.js
+// js/utils.js
+
 let recorder;
-let isRecording = false;
 let recordedBlobs = [];
-let downloadLink;
-let recordButton;
+let isRecording = false;
+let canvasStream = null;
 
-export function setupRecording(canvasElement, recordButtonElement, downloadLinkElement) {
-    recordButton = recordButtonElement;
-    downloadLink = downloadLinkElement;
+/**
+ * Initialize the recorder with the canvas element.
+ * Must be called once after the renderer’s canvas is in the DOM.
+ */
+export function initRecording(canvasElement) {
+  // 60 FPS capture for smooth HD
+  canvasStream = canvasElement.captureStream(60);
+}
 
-    recordButton.addEventListener('click', async () => {
-        if (!isRecording) {
-            try {
-                const stream = canvasElement.captureStream(30); // 30 FPS
-                recorder = new MediaRecorder(stream, {
-                    mimeType: 'video/webm;codecs=vp9,opus' // More modern codec
-                });
+/**
+ * Starts a high-bitrate VP9 recording of the initialized canvas.
+ */
+export function startRecording() {
+  if (isRecording || !canvasStream) return;
 
-                recorder.ondataavailable = (event) => {
-                    if (event.data && event.data.size > 0) {
-                        recordedBlobs.push(event.data);
-                    }
-                };
-
-                recorder.onstop = () => {
-                    const blob = new Blob(recordedBlobs, {
-                        type: 'video/webm'
-                    });
-                    const url = URL.createObjectURL(blob);
-                    downloadLink.href = url;
-                    downloadLink.style.display = 'block';
-                    recordedBlobs = [];
-                    recorder = null;
-                };
-
-                recorder.start();
-                recordButton.textContent = 'Stop Recording';
-                isRecording = true;
-                downloadLink.style.display = 'none';
-            } catch (error) {
-                console.error('Error starting recording:', error);
-                alert('Error starting recording. Make sure your browser supports screen capture and the specified codec.');
-            }
-        } else {
-            recorder.stop();
-            recordButton.textContent = 'Start Recording';
-            isRecording = false;
-        }
+  recordedBlobs = [];
+  try {
+    recorder = new MediaRecorder(canvasStream, {
+      mimeType: 'video/webm;codecs=vp9,opus',
+      videoBitsPerSecond: 25_000_000  // ~25 Mbps for HD
     });
+  } catch (e) {
+    console.error('MediaRecorder init failed:', e);
+    alert('Unable to start recording: ' + e.message);
+    return;
+  }
+
+  recorder.ondataavailable = (event) => {
+    if (event.data && event.data.size > 0) {
+      recordedBlobs.push(event.data);
+    }
+  };
+
+  recorder.onstop = () => {
+    const blob = new Blob(recordedBlobs, { type: 'video/webm' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.style.display = 'none';
+    a.href    = url;
+    a.download= 'solar-system.webm';
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
+
+  recorder.start();
+  isRecording = true;
+  console.log('Recording started');
+}
+
+/**
+ * Stops the recording and triggers download.
+ */
+export function stopRecording() {
+  if (!isRecording || !recorder) return;
+  recorder.stop();
+  isRecording = false;
+  console.log('Recording stopped');
 }

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+const GALAXY_RADIUS = 5000 * 1.1;  // 10% margin
 
 export class StarField {
     constructor(scene) {
@@ -8,7 +9,7 @@ export class StarField {
 
     createBackground() {
         // Create a large sphere for the background
-        const geometry = new THREE.SphereGeometry(1000, 32, 32);
+        const geometry = new THREE.SphereGeometry(GALAXY_RADIUS, 64, 64);
         const textureLoader = new THREE.TextureLoader();
         
         // Load the Milky Way texture
