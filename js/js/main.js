@@ -465,7 +465,7 @@ class SolarSystem {
 
     setupRecording() {
         const stream = this.renderer.domElement.captureStream(60);
-        this.recorder = new RecordRTC(stream, {
+        this.recorder = new window.RecordRTC(stream, {
             type: 'video',
             mimeType: 'video/webm',
             videoBitsPerSecond: 8000000
