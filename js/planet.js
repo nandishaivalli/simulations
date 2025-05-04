@@ -29,48 +29,48 @@ export class Planet {
         // Define texture maps for each planet
         const textureMaps = {
             'Sun': {
-                map: '../scripts/simulations/textures/8k_sun.jpg',
+                map: 'textures/8k_sun.jpg',
                 emissive: true
             },
             'Mercury': {
-                map: '../scripts/simulations/textures/8k_mercury.jpg',
+                map: 'textures/8k_mercury.jpg',
                 reflectivity: 0.1
             },
             'Venus': {
-                map: '../scripts/simulations/textures/8k_venus_surface.jpg',
-                atmosphere: '../scripts/simulations/textures/4k_venus_atmosphere.jpg',
+                map: '8k_venus_surface.jpg',
+                atmosphere: '4k_venus_atmosphere.jpg',
                 reflectivity: 0.3
             },
             'Earth': {
-                map: '../scripts/simulations/textures/8k_earth_daymap.jpg',
-                normalMap: '../scripts/simulations/textures/8k_earth_normal_map.tif',
-                specularMap: '../scripts/simulations/textures/8k_earth_specular_map.tif',
-                clouds: '../scripts/simulations/textures/8k_earth_clouds.jpg',
-                nightMap: '../scripts/simulations/textures/8k_earth_nightmap.jpg',
+                map: 'textures/8k_earth_daymap.jpg',
+                normalMap: 'textures/8k_earth_normal_map.tif',
+                specularMap: 'textures/8k_earth_specular_map.tif',
+                clouds: 'textures/8k_earth_clouds.jpg',
+                nightMap: 'textures/8k_earth_nightmap.jpg',
                 reflectivity: 0.2
             },
             'Mars': {
-                map: '../scripts/simulations/textures/8k_mars.jpg',
+                map: 'textures/8k_mars.jpg',
                 reflectivity: 0.15
             },
             'Jupiter': {
-                map: '../scripts/simulations/textures/8k_jupiter.jpg',
+                map: 'textures/8k_jupiter.jpg',
                 reflectivity: 0.25
             },
             'Saturn': {
-                map: '../scripts/simulations/textures/8k_saturn.jpg',
+                map: 'textures/8k_saturn.jpg',
                 reflectivity: 0.3
             },
             'Uranus': {
-                map: '../scripts/simulations/textures/8k_uranus.jpg',
+                map: 'textures/8k_uranus.jpg',
                 reflectivity: 0.2
             },
             'Neptune': {
-                map: '../scripts/simulations/textures/8k_neptune.jpg',
+                map: 'textures/8k_neptune.jpg',
                 reflectivity: 0.2
             },
             'Pluto': {
-                map: '8k_pluto.jpg'
+                map: 'textures/8k_pluto.jpg'
             }
         };
 
@@ -123,7 +123,7 @@ export class Planet {
         if (this.name === 'Saturn') {
             const ringGeometry = new THREE.RingGeometry(this.radius * 1.5, this.radius * 2, 64);
             const ringMaterial = new THREE.MeshPhongMaterial({
-                map: textureLoader.load('../scripts/simulations/textures/8k_saturn_ring_alpha.png'),
+                map: textureLoader.load('textures/8k_saturn_ring_alpha.png'),
                 side: THREE.DoubleSide,
                 transparent: true,
                 opacity: 0.8,
@@ -162,7 +162,7 @@ export class Planet {
             64
         );
         const beltMaterial = new THREE.MeshBasicMaterial({
-            map: new THREE.TextureLoader().load(`textures/${this.beltData.texture}`),
+            map: new THREE.TextureLoader().load(`${this.beltData.texture}`),
             side: THREE.DoubleSide,
             transparent: true,
             opacity: 0.5

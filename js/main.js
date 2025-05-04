@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GUI } from 'dat.gui';
-import RecordRTC from 'recordrtc';
 import { Planet } from './planet.js';
 import { StarField } from './starField.js';
+
 
 class SolarSystem {
     constructor() {
@@ -222,13 +222,13 @@ class SolarSystem {
             {
                 name: 'Sun',
                 radius: 6.96,
-                texture: '../scripts/simulations/textures/8k_sun.jpg',
+                texture: 'textures/8k_sun.jpg',
                 emissive: true
             },
             {
                 name: 'Mercury',
                 radius: 0.38,
-                texture: '../scripts/simulations/textures/8k_mercury.jpg',
+                texture: 'textures/8k_mercury.jpg',
                 distance: 5.8,
                 rotationSpeed: 0.004,
                 orbitSpeed: 0.04
@@ -236,15 +236,15 @@ class SolarSystem {
             {
                 name: 'Venus',
                 radius: 0.95,
-                texture: '../scripts/simulations/textures/8k_venus_surface.jpg',
+                texture: 'textures/8k_venus_surface.jpg',
                 distance: 10.8,
                 rotationSpeed: 0.002,
                 orbitSpeed: 0.015
             },
             {
-                name: 'Earth',
+                name: 'textures/Earth',
                 radius: 1.0,
-                texture: '../scripts/simulations/textures/8k_earth_daymap.jpg',
+                texture: 'textures/8k_earth_daymap.jpg',
                 distance: 15,
                 rotationSpeed: 0.01,
                 orbitSpeed: 0.01,
@@ -252,7 +252,7 @@ class SolarSystem {
                     {
                         name: 'Moon',
                         radius: 0.27,
-                        texture: '../scripts/simulations/textures/8k_moon.jpg',
+                        texture: 'textures/8k_moon.jpg',
                         distance: 2,
                         orbitSpeed: 0.05,
                         rotationSpeed: 0.005
@@ -262,7 +262,7 @@ class SolarSystem {
             {
                 name: 'Mars',
                 radius: 0.53,
-                texture: '../scripts/simulations/textures/8k_mars.jpg',
+                texture: 'textures/8k_mars.jpg',
                 distance: 22.8,
                 rotationSpeed: 0.008,
                 orbitSpeed: 0.008,
@@ -270,7 +270,7 @@ class SolarSystem {
                     {
                         name: 'Phobos',
                         radius: 0.1,
-                        texture: '../scripts/simulations/textures/8k_phobos.jpg',
+                        texture: 'textures/8k_phobos.jpg',
                         distance: 1.5,
                         orbitSpeed: 0.1,
                         rotationSpeed: 0.01
@@ -278,7 +278,7 @@ class SolarSystem {
                     {
                         name: 'Deimos',
                         radius: 0.08,
-                        texture: '../scripts/simulations/textures/8k_deimos.jpg',
+                        texture: 'textures/8k_deimos.jpg',
                         distance: 2,
                         orbitSpeed: 0.08,
                         rotationSpeed: 0.008
@@ -288,7 +288,7 @@ class SolarSystem {
             {
                 name: 'Jupiter',
                 radius: 11.2,
-                texture: '../scripts/simulations/textures/8k_jupiter.jpg',
+                texture: 'textures/8k_jupiter.jpg',
                 distance: 77.8,
                 rotationSpeed: 0.02,
                 orbitSpeed: 0.002,
@@ -296,7 +296,7 @@ class SolarSystem {
                     {
                         name: 'Io',
                         radius: 0.4,
-                        texture: '../scripts/simulations/textures/8k_io.jpg',
+                        texture: 'textures/8k_io.jpg',
                         distance: 4,
                         orbitSpeed: 0.1,
                         rotationSpeed: 0.01
@@ -304,7 +304,7 @@ class SolarSystem {
                     {
                         name: 'Europa',
                         radius: 0.35,
-                        texture: '../scripts/simulations/textures/8k_europa.jpg',
+                        texture: 'textures/8k_europa.jpg',
                         distance: 6,
                         orbitSpeed: 0.08,
                         rotationSpeed: 0.008
@@ -312,7 +312,7 @@ class SolarSystem {
                     {
                         name: 'Ganymede',
                         radius: 0.5,
-                        texture: '../scripts/simulations/textures/8k_ganymede.jpg',
+                        texture: 'textures/8k_ganymede.jpg',
                         distance: 8,
                         orbitSpeed: 0.06,
                         rotationSpeed: 0.006
@@ -320,7 +320,7 @@ class SolarSystem {
                     {
                         name: 'Callisto',
                         radius: 0.45,
-                        texture: '../scripts/simulations/textures/8k_callisto.jpg',
+                        texture: 'textures/8k_callisto.jpg',
                         distance: 10,
                         orbitSpeed: 0.04,
                         rotationSpeed: 0.004
@@ -330,7 +330,7 @@ class SolarSystem {
             {
                 name: 'Saturn',
                 radius: 9.45,
-                texture: '../scripts/simulations/textures/8k_saturn.jpg',
+                texture: 'textures/8k_saturn.jpg',
                 distance: 143.4,
                 rotationSpeed: 0.018,
                 orbitSpeed: 0.0015,
@@ -338,13 +338,13 @@ class SolarSystem {
                 beltData: {
                     innerRadius: 12,
                     outerRadius: 15,
-                    texture: '../scripts/simulations/textures/8k_saturn_ring_alpha.png'
+                    texture: 'textures/8k_saturn_ring_alpha.png'
                 },
                 moons: [
                     {
                         name: 'Titan',
                         radius: 0.4,
-                        texture: '../scripts/simulations/textures/8k_titan.jpg',
+                        texture: 'textures/8k_titan.jpg',
                         distance: 8,
                         orbitSpeed: 0.05,
                         rotationSpeed: 0.005
@@ -352,7 +352,7 @@ class SolarSystem {
                     {
                         name: 'Enceladus',
                         radius: 0.2,
-                        texture: '../scripts/simulations/textures/8k_enceladus.jpg',
+                        texture: 'textures/8k_enceladus.jpg',
                         distance: 6,
                         orbitSpeed: 0.07,
                         rotationSpeed: 0.007
@@ -362,7 +362,7 @@ class SolarSystem {
             {
                 name: 'Uranus',
                 radius: 4.01,
-                texture: '../scripts/simulations/textures/8k_uranus.jpg',
+                texture: 'textures/8k_uranus.jpg',
                 distance: 287.1,
                 rotationSpeed: 0.012,
                 orbitSpeed: 0.001,
@@ -370,13 +370,13 @@ class SolarSystem {
                 beltData: {
                     innerRadius: 5,
                     outerRadius: 7,
-                    texture: '../scripts/simulations/textures/8k_uranus_ring_alpha.png'
+                    texture: 'textures/8k_uranus_ring_alpha.png'
                 }
             },
             {
                 name: 'Neptune',
                 radius: 3.88,
-                texture: '../scripts/simulations/textures/8k_neptune.jpg',
+                texture: 'textures/8k_neptune.jpg',
                 distance: 449.5,
                 rotationSpeed: 0.014,
                 orbitSpeed: 0.0008,
@@ -384,7 +384,7 @@ class SolarSystem {
                     {
                         name: 'Triton',
                         radius: 0.3,
-                        texture: '../scripts/simulations/textures/8k_triton.jpg',
+                        texture: 'textures/8k_triton.jpg',
                         distance: 5,
                         orbitSpeed: 0.06,
                         rotationSpeed: 0.006
@@ -400,7 +400,7 @@ class SolarSystem {
             beltData: {
                 innerRadius: 30,
                 outerRadius: 50,
-                texture: '../scripts/simulations/textures/8k_asteroid_belt.jpg'
+                texture: 'textures/8k_asteroid_belt.jpg'
             }
         };
 
@@ -466,7 +466,7 @@ class SolarSystem {
 
     setupRecording() {
         const stream = this.renderer.domElement.captureStream(60);
-        this.recorder = new RecordRTC(stream, {
+        this.recorder = new window.RecordRTC(stream, {
             type: 'video',
             mimeType: 'video/webm',
             videoBitsPerSecond: 8000000
